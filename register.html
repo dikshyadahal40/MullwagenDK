@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmelden oder Einloggen Form</title>
+    <style>
+        body {
+            background: url("assets/img/photo-garbage-truck-collecting-waste-urban-neighborhood_847439-54854.avif") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-color: #161414;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .title{
+            text-align: center;
+            font-size: 1.875em;
+            color: #64a19d;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="password"],
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-container button {
+            background-color: #64a19d;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: c4dad9;
+        }
+
+        .form-container .toggle-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .form-container .toggle-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .form-container .toggle-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Einloggen</h2>
+        <form id="login-form" action="/login" method="POST">
+            <input type="text" placeholder="Benutzername" name="Benutzername" required>
+            <input type="password" placeholder="Passwort" name="Passwort" required>
+            <button type="submit">Einloggen</button>
+        </form>
+        <div class="toggle-link">
+            <a href="#" id="signup-link">Melden Sie sich an, wenn Sie neu sind</a>
+        </div>
+        <form id="signup-form" action="/signup" method="POST" style="display: none;">
+            <h3 class="title">Sign Up</h3>
+            <h2> Erstellen Sie Ihr Konto</h2>
+        <h3>Voller Name</h3>
+        <input type="text" placeholder="geben Sie Ihren Namen" id="fn"/>
+        <h3>Benutzername</h3>
+        <input type="text" placeholder="Benutzername" id="un"/>
+        <h3>E-mail</h3>
+        <input type="email" placeholder="Ihre E-Mail" id="email"/>
+        <h3>Passwort</h3>
+        <input type="password" placeholder="geben Sie Ihr Passwort ein" id="p1"/><br>
+        <input type="password" placeholder="Passen Sie Ihr Passwort an" id="p2"/>
+        <h1>Geschlecht</h1>
+        <lable for="gender">Geschlecht:</lable>
+        <select>
+            <option value="male">männlich</option>
+            <option value="female">weiblich</option>
+            <option value="others">Andere</option>
+        </select><br><br>
+        <button type="submit" value="submit" onclick="create_account()">Anmelden</button>
+        </form>
+    </div>
+        
+    <script>
+        document.getElementById('signup-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'block';
+        });
+        const form=document.getElementById( 'form')
+        const Fullname=document.getElementById('fn')
+        const benutzername=document.getElementById('un')
+        
+        form.addEventListener('Anmelden', function(e){
+          e.preventDefault();
+          const fullnameValue=Fullname.value;
+          const benutzernameValue=benutzername.value;
+
+          localStorage.setItem('fullname',fullnameValue);
+          localStorage.setItem('username',benutzernameValue);
+          window.location.href="next.html";
+        })
+    </script>
+</body>
+</html>
